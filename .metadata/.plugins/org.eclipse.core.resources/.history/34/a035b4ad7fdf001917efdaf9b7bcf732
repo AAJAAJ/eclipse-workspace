@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package cn.yunhe.servlet;
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年9月25日 下午6:29:33
+ */
+public class test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("dfa");
+	}
+	
+
+}

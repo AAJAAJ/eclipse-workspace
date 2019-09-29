@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace作为映射文件的唯一标识用于和对应的dao层接口进行匹配 -->
+<mapper namespace="cn.yunhe.dao.IUserDao">
+
+	<!-- id作为SQL的唯一标识,要求id的值要和接口的方法名保持一致 ,参数也要保持一致,返回结果的类型要保持一致-->
+	<insert id="addUser" parameterType="user">
+		insert into t_user(uname,upass,state,flag) values(#{uname},#{upass},0,0)
+	</insert>
+	
+	<select id="queryUserById" parameterType="int" resultType="user">
+		select uid,uname,upass,state,flag from t_user where uid = #{uid}
+	</select>
+
+	<select id="queryAllUsers" resultType="user">
+		select uid,uname,upass,state,flag from t_user
+	</select>
+	
+	<select id="queryInfoList" parameterType="userCustom" resultType="user">
+		select uid,uname,upass,state,flag from t_user where sex = #{user.sex}
+	</select>
+	
+	<!-- 
+		type:指定映射的对象
+		id:作为resultMap的唯一标识关联对应的SQL语句
+		id标签用于指定type指定的类型中的主键
+		result标签指定列对应的属性
+	 -->
+	<resultMap type="goods" id="goodsinfoMap">
+		<id column="goodsId_" property="goodsId"/>
+		<result column="name_" property="goodsName"/>
+		
+		<!-- association映射单个对象 javaType:指定property给的属性对应的java类型 -->
+		<association property="goodsDetail" javaType="cn.yunhe.entity.GoodsDetail">
+			<id column="goodsId_" property="goodsId"/>
+			<result column="name_" property="goodsName"/>
+			<result column="createTime" property="create_time"/>
+			<result column="expireTime" property="expire_time"/>
+			<result column="count_" property="count"/>
+			<result column="price_" property="price"/>
+		</association>
+		
+	</resultMap>
+	
+	<resultMap type="order" id="orderListMap">
+		<!-- order中的属性 -->
+		<id column="orderId" property="orderId"/>
+		<result column="uid" property="uid"/>
+		<result column="create_time" property="create_time"/>
+		
+		<!-- order中的属性中国对应的一个集合 -->
+		<collection property="goodsList" ofType="goods">
+			<id column="goodsId" property="goodsId"/>
+			<result column="goodsName" property="goodsName"/>
+		</collection>
+	</resultMap>
+	
+	<resultMap type="order" id="orderInfoListMap">
+		<!-- order中的属性 -->
+		<id column="orderId" property="orderId"/>
+		<result column="uid" property="uid"/>
+		<result column="create_time" property="create_time"/>
+		
+		<!-- order中的属性中国对应的一个集合 -->
+		<collection property="goodsList" ofType="goods">
+			<id column="goodsId" property="goodsId"/>
+			<result column="goodsName" property="goodsName"/>
+			<association property="goodsDetail" javaType="goodsDetail">
+				<id column="goodsId" property="goodsId"/>
+				<result column="goodsName" property="goodsName"/>
+				<result column="create_time" property="create_time"/>
+				<result column="expire_time" property="expire_time"/>
+				<result column="count" property="count"/>
+				<result column="price" property="price"/>
+			</association>
+		</collection>
+	</resultMap>
+	
+	<resultMap type="user" id="userOrderListMap">
+		<!-- user中的属性 -->
+		<id column="uid" property="uid"/>
+		<result column="uname" property="uname"/>
+		<result column="state" property="state"/>
+		<result column="flag" property="flag"/>
+		<collection property="orderList" ofType="order">
+			<!-- order中的属性 -->
+			<id column="orderId" property="orderId"/>
+			<result column="uid" property="uid"/>
+			<result column="create_time" property="create_time"/>
+			<collection property="goodsList" ofType="goods">
+				<id column="goodsId" property="goodsId"/>
+				<result column="goodsName" property="goodsName"/>
+				<association property="goodsDetail" javaType="goodsDetail">
+					<id column="goodsId" property="goodsId"/>
+					<result column="goodsName" property="goodsName"/>
+					<result column="create_time" property="create_time"/>
+					<result column="expire_time" property="expire_time"/>
+					<result column="count" property="count"/>
+					<result column="price" property="price"/>
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<!-- 需求:查询商品对应的商品详情 -->
+	<select id="queryGoodsInfoList" resultMap="goodsinfoMap">
+		select 
+			goods.goodsId goodsId_,
+			goods.goodsName name_, 
+			detail.price price_,
+			detail.count count_,
+			detail.create_time createTime,
+			detail.expire_time expireTime
+		from t_goods goods,t_goods_detail detail
+		where goods.goodsId = detail.goodsId
+	</select>
+	
+	<!-- 需求:查询所有订单对应的商品 -->
+	<select id="queryOrderList" resultMap="orderListMap">
+		select
+		o.orderId,
+		o.uid,
+		o.create_time,
+		goods.goodsId,
+		goods.goodsName
+		from t_order o,t_goods goods
+		where o.goodsId = goods.goodsId
+	</select>
+	
+	<select id="queryOrderInfoList" resultMap="orderInfoListMap">
+		select
+		o.orderId,
+		o.uid,
+		o.create_time,
+		goods.goodsId,
+		goods.goodsName,
+		detail.count,
+		detail.create_time,
+		detail.expire_time,
+		detail.price
+		from t_order o,t_goods goods,t_goods_detail detail
+		where o.goodsId = goods.goodsId and detail.goodsId = goods.goodsId
+	</select>
+	
+	<select id="queryUserOrderList" resultMap="userOrderListMap">
+		select
+		user.uid,
+		user.uname,
+		user.state,
+		user.flag,
+		o.orderId,
+		o.uid,
+		o.create_time,
+		goods.goodsId,
+		goods.goodsName,
+		detail.count,
+		detail.create_time,
+		detail.expire_time,
+		detail.price
+		from t_user user, t_order o,t_goods goods,t_goods_detail detail
+		where user.uid = o.uid and o.goodsId = goods.goodsId and detail.goodsId = goods.goodsId
+	</select>
+	
+	
+	
+	
+	
+</mapper>

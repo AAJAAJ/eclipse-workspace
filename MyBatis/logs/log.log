@@ -1,0 +1,11 @@
+2019-09-25 18:28:55  [ main:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2019-09-25 18:28:55  [ main:108 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 18:28:55  [ main:108 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 18:28:55  [ main:109 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 18:28:55  [ main:109 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 18:28:56  [ main:194 ] - [ DEBUG ]  Opening JDBC Connection
+2019-09-25 18:28:56  [ main:400 ] - [ DEBUG ]  Created connection 517210187.
+2019-09-25 18:28:56  [ main:401 ] - [ DEBUG ]  Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@1ed4004b]
+2019-09-25 18:28:56  [ main:404 ] - [ DEBUG ]  ==>  Preparing: select * from user where id = ? 
+2019-09-25 18:28:56  [ main:429 ] - [ DEBUG ]  ==> Parameters: 4(Integer)
+2019-09-25 18:28:56  [ main:487 ] - [ DEBUG ]  <==      Total: 1

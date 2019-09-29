@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="show.jsp" method="post">
+		<div id="err"><span></span></div>
+		用户名:<input type="text" name="username" id="username" />
+		<br /><br />
+		密&nbsp;&nbsp;&nbsp;码:<input type="text" name="password" id="password" />
+		<br /><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="submit" value="登录"/>
+		&nbsp;&nbsp;&nbsp;
+		<input type="submit" value="注册"/>
+		<br />
+		<div id="err"><span></span></div>
+	</form>
+	
+	<script src="./js/jquery-3.1.1.js"></script>
+	<script>
+	//提交
+	$(function(){
+		$('form').on('blur','#username',function(){
+			 //获取用户输入的用户名
+			var username = $(this).val();
+			//将获取到的用户名发送到后台,对比数据库中已有的用户名进行判断
+			$.ajax({
+				url:'SigninServlet',
+				type:'post',
+				data:{
+					"username":username
+				},
+				success:function(data){
+					$('#username').next().text(data);
+					
+				},
+				error:function(){
+					
+				}
+			})
+			
+		})
+	})
+	
+	
+	
+
+	
+	</script>
+</body>
+</html>

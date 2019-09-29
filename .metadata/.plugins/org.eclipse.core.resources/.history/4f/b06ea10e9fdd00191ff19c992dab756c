@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+
+import cn.yunhe.bean.User;
+import cn.yunhe.dao.UserDao;
+import cn.yunhe.dao.imp.UserDaoImp;
+import cn.yunhe.dao.imp.aaa;
+
+/**
+ * 
+ */
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年9月22日 下午4:14:47
+ */
+public class test {
+public static void main(String[] args) {
+		UserDao userDao = new UserDaoImp();
+		  ArrayList<User> userList = userDao.alluser(); 
+		  for (User user : userList) {
+		  System.out.println(user.getUname()); 
+		  }
+}
+}

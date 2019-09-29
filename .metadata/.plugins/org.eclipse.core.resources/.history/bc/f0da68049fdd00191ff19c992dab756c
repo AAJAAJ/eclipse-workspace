@@ -1,0 +1,60 @@
+/**
+ * 
+ */
+package cn.yunhe.dao.imp;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import cn.yunhe.bean.User;
+import cn.yunhe.dao.UserDao;
+import cn.yunhe.utils.DBUtils;
+
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年9月22日 下午3:35:44
+ */
+public class UserDaoImp implements UserDao{
+
+	@Override
+	public ArrayList<User> alluser() {
+		ArrayList<User> list = new ArrayList<User>();
+		return list;
+	}
+	@Override
+	public User aaa() {
+		Connection conn = null;
+		// 预编译SQL语句的对象
+		PreparedStatement ps = null;
+		// 返回集
+		ResultSet rs = null;
+
+		User user = null;
+		
+		try {
+			String sql = "select * from user";
+			conn = DBUtils.getConnection();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					// 将获取到的值封装到一个topic对象中
+					user = new User();
+					user.setId(rs.getInt(1));
+					user.setUname(rs.getString(2));
+					user.setPwd(rs.getString(3));
+					System.out.println(rs.getInt(1));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+		
+	}
+
+}

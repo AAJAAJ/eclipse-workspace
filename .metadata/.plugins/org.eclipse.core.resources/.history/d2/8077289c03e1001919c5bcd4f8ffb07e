@@ -1,0 +1,11 @@
+package cn.yunhe.dao;
+
+import java.util.List;
+
+import cn.yunhe.entity.Goods;
+
+public interface IGoodsDao {
+
+	
+	List<Goods> queryGoods(Goods goods) ;
+}

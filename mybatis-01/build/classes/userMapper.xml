@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	namespace作为xml文件的唯一标识
+ -->
+<mapper namespace="test">
+	<!-- 
+		注意点:SQL语句后面不要加分号;
+		#{id}:#{}代表占位符,id随便写,通常建议和对应的参数名保持一致
+		parameterType:参数类型,用户规定传入的参数对应的类型
+			类型可以为基本类型、引用数据类型、自定义类型
+		id:SQL语句的唯一标识
+		resultType:输出结果类型,包名+类名
+	 -->
+	<select id="findUserById" parameterType="int" resultType="cn.yunhe.entity.User">
+		select uid,uname,upass,state,flag from t_user where uid=#{uid}
+	</select>
+	
+	<!-- 
+		#{uname}:#{}代表占位符,参数通常与parameterType指定的类型保持一致,若类型为自定义类型,那就于其属性名保持一致
+		${value}:${}代表拼接,容易引起SQL注入,如果参数类型为简单类型,此时其中的参数名只能为value,若类型为自定义类型,那就于其属性名保持一致
+	 -->
+	<select id="queryByName" parameterType="java.lang.String" resultType="cn.yunhe.entity.User" >
+		<!-- select uid,uname,upass,state,flag from t_user where uname like #{uname} -->
+		<!-- select uid,uname,upass,state,flag from t_user where uname like '%${value}%' -->
+		select uid,uname,upass,state,flag from t_user where uname like concat('%',concat(#{uname},'%'));
+	</select>
+	
+	<!-- 
+		parameterType:若传入的类型为自定义类型,则#{}中的参数要和指定的自定义类型中的属性名保持一致
+	 -->
+	<insert id="addUser" parameterType="cn.yunhe.entity.User">
+		<!-- 
+			select last_insert_id():获取最新生成的数据ID
+			order:指定执行顺序,相对于insert语句的执行顺序
+		 -->
+		<selectKey keyProperty="uid" order="AFTER" resultType="int">
+			select last_insert_id()
+		</selectKey>
+		insert into t_user(uname,upass,state,flag) values(#{uname},#{upass},0,0)
+	</insert>
+	
+	<delete id="delUserById" parameterType="java.lang.Integer">
+		delete from t_user where uid = #{uid}
+	</delete>
+	
+	
+	<insert id="addUser2" parameterType="cn.yunhe.entity.User">
+		<!-- 
+			mysql:select uuid():获取一个随机生成的字符串,要求数据库中的主键是字符串类型,长度是35位
+			oracle:select 序列.nextval()
+		 -->
+		<selectKey keyProperty="uid" order="BEFORE" resultType="java.lang.String">
+			select uuid()
+		</selectKey>
+		insert into t_user(uname,upass,state,flag) values(#{uname},#{upass},0,0)
+	</insert>
+	
+</mapper>

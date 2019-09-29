@@ -1,0 +1,44 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="cn.yunhe.controller.UserController"%>
+<%@page import="cn.yunhe.entity.User"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%	
+	UserController userController = new UserController();
+	User usera = userController.queryUser("boss", "190010");
+	session.setAttribute("a", usera.getUserName());
+	%>
+	${not empty a}
+	
+<c:set var="isLogin" value="${empty sessionScope.user}"/>
+
+
+…登录表单
+<form name="signin" action="goto.jsp"  method="post" onsubmit="check()">
+		用户名：<input type="text" name="user" id="user"/>
+		<br>
+		密&nbsp;&nbsp;&nbsp;码：<input type="password" name="password" id="password"/>
+		<br>
+		<input type="submit" value="注册"/>
+	</form>
+${isLogin}
+
+已经登录！
+
+
+	
+	
+	
+	
+	
+</body>
+</html>

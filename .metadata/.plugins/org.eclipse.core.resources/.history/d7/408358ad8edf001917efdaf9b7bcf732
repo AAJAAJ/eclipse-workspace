@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户注册</title>
+</head>
+<body>
+	<h1>用户注册</h1>
+	<form action="SigninServlet?type=submit" method="post">
+		用户名:<input type="text" name="username" id="username" /><span></span>
+		<br />
+		<br />
+		密&nbsp;&nbsp;&nbsp;码:<input type="text" name="pwd" id="pwd" /><span></span>
+		<br />
+		<br />
+		<input type="submit" value="提交注册"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" id="goback" value="返回"/>
+		
+</form>
+<script src="./js/jquery-3.1.1.js"></script>
+<script>
+$(function(){
+	$('form').on('blur','#username',function(){
+		 //获取用户输入的用户名
+		var username = $(this).val();
+		//将获取到的用户名发送到后台,对比数据库中已有的用户名进行判断
+		$.ajax({
+			url:'SigninServlet',
+			type:'post',
+			data:{
+				"username":username,
+				"type":"namejudge"
+			},
+			success:function(data){
+				$('#username').next().text(data);
+				
+			}
+		})
+		
+	})
+})
+</script>
+	
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+/**
+ * 
+ */
+package cn.yunhe.servlet;
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import cn.yunhe.dao.UserDao;
+import cn.yunhe.entity.User;
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年9月25日 下午6:29:33
+ */
+public class test {
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			addUser();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * @throws IOException 
+	 * 
+	 */
+
+	public static void addUser() throws IOException {
+		InputStream inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession sqlSession = factory.openSession();
+		UserDao userDao = sqlSession.getMapper(UserDao.class);
+		
+		User user = new User();
+		user.setUsername("杨航");
+		user.setPassword("111");
+		int re = userDao.addUser(user);
+		System.out.println(re);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

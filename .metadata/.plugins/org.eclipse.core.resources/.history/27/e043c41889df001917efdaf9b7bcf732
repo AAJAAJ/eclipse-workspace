@@ -1,0 +1,81 @@
+package cn.yunhe.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.jar.Attributes.Name;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.yunhe.dao.UserDao;
+import cn.yunhe.entity.User;
+import cn.yunhe.service.UserService;
+
+/**
+ * Servlet implementation class SigninServlet
+ */
+@WebServlet("/SigninServlet")
+public class SigninServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SigninServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		//获取提交的数据
+		String username = request.getParameter("username");
+		String pwd = request.getParameter("pwd");
+		String type = request.getParameter("type");
+		//打印测试
+		System.out.println(username);
+		System.out.println(pwd);
+		
+		PrintWriter out = response.getWriter();
+		//判断要执行的内容
+		if (type == "submit") {
+			
+		}
+		//判断用户名
+		if (type == "namejudge") {
+			if (username == null) {
+				out.write("必须填写！");
+			} else {
+
+			}
+			UserService userService = new UserService();
+			List<User> userList = userService.allUser();
+			
+			for (User user : userList) {
+				if(user.getUsername().equals(username)) {
+						out.write("用户名已存在！");
+				}
+			}
+		}
+		
+		
+		
+	}
+}

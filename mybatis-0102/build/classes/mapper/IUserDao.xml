@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace作为映射文件的唯一标识用于和对应的dao层接口进行匹配 -->
+<mapper namespace="cn.yunhe.dao.IUserDao">
+
+	<!-- id作为SQL的唯一标识,要求id的值要和接口的方法名保持一致 ,参数也要保持一致,返回结果的类型要保持一致-->
+	<insert id="addUser" parameterType="cn.yunhe.entity.User">
+		insert into t_user(uname,upass,state,flag) values(#{uname},#{upass},0,0)
+	</insert>
+	
+	<select id="queryUserById" parameterType="int" resultType="cn.yunhe.entity.User">
+		select uid,uname,upass,state,flag from t_user where uid = #{uid}
+	</select>
+
+	<select id="queryAllUsers" resultType="cn.yunhe.entity.User">
+		select uid,uname,upass,state,flag from t_user
+	</select>
+</mapper>

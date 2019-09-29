@@ -1,0 +1,44 @@
+package test;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;;
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年8月21日 下午3:20:08
+ */
+public class day0821 {
+
+	public static void main(String[] args) {
+		Collection coll = new ArrayList();
+		coll.add("1");
+		coll.add("2");
+		coll.add("a");
+		coll.add("a");
+		coll.add("1");
+		coll.add("3");
+		coll.add("adfga");
+		coll.add("are");
+		coll.add("aaa");
+//		System.out.println(coll);
+		int i = 0;
+		//作业1 指定一个集合,去除集合中的重复元素,并打印结果
+		for (Iterator it = coll.iterator();it.hasNext();) {
+			System.out.println(i);
+			i++;
+//			System.out.println(it.next());
+			for (Iterator it1 = coll.iterator();it1.hasNext();) {
+				
+//				if (it1.next()==it.next()) {
+//					System.out.println(it.next());
+//				}
+			}
+		}
+		
+		
+		
+		
+	}
+
+}

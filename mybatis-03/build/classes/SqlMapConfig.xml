@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 引入数据源文件 -->
+	<properties resource="db.properties"></properties>
+	
+	<!-- 开启延迟加载 -->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 开启为二级缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<!-- 指定要扫描的路径(包名) 别名即类名(首字母不区分大小写)-->
+		<package name="cn.yunhe.entity"/>
+	</typeAliases>
+    <!--环境配置，连接的数据库，这里使用的是MySQL-->
+    <environments default="development">
+        <environment id="development">
+            <!--指定事务管理的类型，这里简单使用Java的JDBC的提交和回滚设置-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--dataSource 指连接源配置，POOLED是JDBC连接对象的数据源连接池的实现-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"></property>
+                <property name="url" value="${jdbc.url}"></property>
+                <property name="username" value="${jdbc.username}"></property>
+                <property name="password" value="${jdbc.password}"></property>
+            </dataSource>
+        </environment>
+    </environments>
+    
+    <mappers>
+    	<!-- resource:指定要引入的mapper文件,相对路径 -->
+    	<mapper resource="mapper/IOrderDao.xml"/>
+    	<mapper resource="mapper/IUserDao.xml"/>
+    </mappers>
+</configuration>

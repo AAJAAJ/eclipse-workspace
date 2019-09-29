@@ -1,0 +1,46 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+欢迎光临 ${user.userName } ,
+<a href="login.jsp">安全退出</a>
+	<table cellspacing="0" cellpadding="5px" border="1" align="center" width="50%">
+		<tr>
+			<th>序号</th>
+			<th>名称</th>
+			<th>价格</th>
+			<th>产地</th>
+		</tr>
+	</table>
+	
+	<script src="./js/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+	window.onload=function(){
+		$.ajax({
+			url:"ShowServlet",
+			type:'post',
+			data:{},
+			dataType:'text',
+			success:function(data){
+				
+				var arr = JSON.parse(data);
+				
+				//i 下标 e 对象
+				$.each(arr,function(i,e){
+					$('table').append("<tr><td>"+e.proid+"</td><td>"+e.proname+"</td><td>"+e.proprice+"</td><td>"+e.proaddress+"</td></tr>");
+				})
+			},
+			error:function(data){
+			
+			}
+		})
+	}
+	</script>
+</body>
+</html>

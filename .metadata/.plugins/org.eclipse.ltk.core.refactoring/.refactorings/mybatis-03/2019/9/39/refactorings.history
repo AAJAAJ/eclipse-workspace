@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 packages to &apos;mybatis02/src&apos;&#x0D;&#x0A;- Original project: &apos;mybatis-03&apos;&#x0D;&#x0A;- Destination element: &apos;mybatis02/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     mybatis-03/src/cn.yunhe.dao&#x0D;&#x0A;     mybatis-03/src/cn.yunhe.entity&#x0D;&#x0A;     mybatis-03/src/cn.yunhe.test" description="Copy packages" destination="=mybatis02/src" element1="/src&lt;cn.yunhe.dao" element2="/src&lt;cn.yunhe.entity" element3="/src&lt;cn.yunhe.test" flags="589830" fragments="3" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1569574136338" version="1.0"/>
+</session>

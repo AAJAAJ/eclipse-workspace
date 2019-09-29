@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 引入数据源文件 -->
+	<properties resource="db.properties"></properties>
+	<typeAliases>
+		<!-- 单个别名配置  需要配置多个那就写多个typeAlias标签-->
+		<!-- <typeAlias type="cn.yunhe.entity.User" alias="user"/> -->
+		<!-- 指定要扫描的路径(包名) 别名即类名(首字母不区分大小写)-->
+		<package name="cn.yunhe.entity"/>
+	</typeAliases>
+    <!--环境配置，连接的数据库，这里使用的是MySQL-->
+    <environments default="development">
+        <environment id="development">
+            <!--指定事务管理的类型，这里简单使用Java的JDBC的提交和回滚设置-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--dataSource 指连接源配置，POOLED是JDBC连接对象的数据源连接池的实现-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"></property>
+                <property name="url" value="${jdbc.url}"></property>
+                <property name="username" value="${jdbc.username}"></property>
+                <property name="password" value="${jdbc.password}"></property>
+            </dataSource>
+        </environment>
+    </environments>
+    
+    <mappers>
+    	<!-- resource:指定要引入的mapper文件,相对路径 -->
+    	<!-- <mapper resource="mapper/IUserDao.xml"/> -->
+    	
+    	<!-- 
+    		该写法的要求:1 要符合mapper代理的开发规范 2 xml文件要和java接口文件在同一个目录下
+    	 -->
+    	<package name="cn.yunhe.dao"/>
+    </mappers>
+</configuration>

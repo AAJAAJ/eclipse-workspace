@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yunhe.dao.IGoodsDao">
+
+	<resultMap type="goods" id="queryGoodsMap">
+		<id column="goodsId" property="goodsId"/>
+		<result column="goodsName" property="goodsName"/>
+		<association property="goodsDetail" javaType="goodsDetail">
+			<result column="count" property="count"/>
+			<result column="price" property="price"/>
+			<result column="create_time" property="create_time"/>
+			<result column="expire_time" property="expire_time"/>
+		</association>
+	</resultMap>
+	<!-- 根据输入的商品信息进行查询:商品名称 商品的价格 商品ID随机组合 -->
+	<select id="queryGoods" parameterType="goods" resultMap="queryGoodsMap">
+		select
+		goods.goodsId,
+		detail.goodsName,
+		detail.count,
+		detail.price,
+		detail.create_time,
+		detail.expire_time
+		from t_goods goods,t_goods_detail detail
+		<where>
+			<if test="goodsDetail!=null">
+				<if test="goodsDetail.goodsName!=null">
+					and goods.goodsName like concat('%',concat(#{goodsDetail.goodsName},'%'))
+				</if>
+				<if test="goodsDetail.price>0">
+					and price &lt; #{goodsDetail.price}
+				</if>
+			</if>
+			and detail.goodsId = goods.goodsId
+		</where>
+		
+	</select>
+	
+</mapper>

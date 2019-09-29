@@ -1,0 +1,19 @@
+package cn.yunhe.entity;
+
+public class UserCustom {
+
+	
+	private User user;
+	
+	
+	public UserCustom() {}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+}

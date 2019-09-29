@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package cn.yunhe.test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import cn.yunhe.entity.User;
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年9月24日 下午2:19:57
+ */
+public class test {
+
+
+	public static void findUserById() throws IOException {
+		InputStream inputStream = new FileInputStream("SqlMapConfig.xml");
+		SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(inputStream);
+		SqlSession sqlSession = factory.openSession();
+		User user = sqlSession.selectOne("test.findUserById",5);
+		System.out.println(user);
+		
+		inputStream.close();
+		
+		
+	}
+	public static void main(String[] args) {
+		try {
+			findUserById();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+}

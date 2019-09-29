@@ -1,0 +1,33 @@
+2019-09-25 17:07:10  [ main:0 ] - [ DEBUG ]  Logging initialized using 'class org.apache.ibatis.logging.log4j.Log4jImpl' adapter.
+2019-09-25 17:07:10  [ main:121 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:10  [ main:121 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:10  [ main:121 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:10  [ main:121 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:215 ] - [ DEBUG ]  Opening JDBC Connection
+2019-09-25 17:07:11  [ main:358 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:358 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:358 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:358 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:378 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:378 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:378 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:378 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:386 ] - [ DEBUG ]  Opening JDBC Connection
+2019-09-25 17:07:11  [ main:395 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:395 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:395 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:396 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:410 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:410 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:410 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:410 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:440 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:440 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:440 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:440 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ Finalizer:445 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ Finalizer:445 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ Finalizer:445 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ Finalizer:445 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ Finalizer:445 ] - [ DEBUG ]  PooledDataSource forcefully closed/removed all connections.
+2019-09-25 17:07:11  [ main:447 ] - [ DEBUG ]  Opening JDBC Connection

@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package cn.yunhe.entity;
+
+/**
+ * @author 性感渣渣傲在线打bug
+ * 2019年9月25日 下午5:28:15
+ */
+public class product {
+/**
+ * 
+ */
+public product() {
+	// TODO Auto-generated constructor stub
+}
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace作为映射文件的唯一标识用于和对应的dao层接口进行匹配 -->
+<mapper namespace="cn.yunhe.dao.IUserDao">
+
+	<!-- id作为SQL的唯一标识,要求id的值要和接口的方法名保持一致 ,参数也要保持一致,返回结果的类型要保持一致-->
+	<insert id="addUser" parameterType="user">
+		insert into t_user(uname,upass,state,flag) values(#{uname},#{upass},0,0)
+	</insert>
+	
+	<select id="queryUserById" parameterType="int" resultType="user">
+		select uid,uname,upass,state,flag from t_user where uid = #{uid}
+	</select>
+
+	<select id="queryAllUsers" resultType="user">
+		select uid,uname,upass,state,flag from t_user
+	</select>
+	
+	<select id="queryInfoList" parameterType="userCustom" resultType="user">
+		select uid,uname,upass,state,flag from t_user where sex = #{user.sex}
+	</select>
+	
+	
+	<resultMap type="user" id="userOrderInfoMapId">
+		<!-- 
+			id标签对用的是表中的主键
+			result标签对应普通的字段
+			column:对应数据库中查询出来的列表中的列名
+			property:对应type中指定的类型中的属性名
+		 -->
+		<id column="uid" property="uid"/>
+		<result column="username" property="uname"/>
+		<result column="state" property="state"/>
+		<result column="flag" property="flag"/>
+		
+	</resultMap>
+	
+	<select id="queryOrderListByUserId" parameterType="int" resultMap="userOrderInfoMapId">
+		select orderId orderId_,o.uid uid_,create_time create_time_,user.uid,uname,state,flag 
+		from t_order o,t_user user
+		where o.uid = user.uid and user.uid=#{id}
+	</select>
+</mapper>
